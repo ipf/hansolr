@@ -4,20 +4,18 @@
 main:
   build: docker/main
   #dockerfile: Ubuntu-12.04 # Ubuntu 12.04 - PHP 5.3, LTS (precise)
-  dockerfile: Ubuntu-14.04  # Ubuntu 14.04 - PHP 5.5, LTS (trusty)
-  #dockerfile: Ubuntu-15.04 # Ubuntu 15.04 - PHP 5.6 (vivid)
+  #dockerfile: Ubuntu-14.04  # Ubuntu 14.04 - PHP 5.5, LTS (trusty)
+  dockerfile: Ubuntu-15.04 # Ubuntu 15.04 - PHP 5.6 (vivid)
   #dockerfile: Ubuntu-15.10 # Ubuntu 15.10 - PHP 5.6 (wily)
   #dockerfile: Ubuntu-HHVM  # Ubuntu 14.04 - HHVM (trusty)
   #dockerfile: Centos-7     # CentOS 7     - PHP 5.4
   links:
     - mysql
-    #- postgres
-    #- mail
-    #- solr
+    - mail
+    - solr
     #- elasticsearch
     #- redis
     #- memcached
-    #- ftp
   volumes:
     - ./:/docker/
     - /tmp/debug/:/tmp/debug/
@@ -38,8 +36,8 @@ web:
   dockerfile: Apache-Httpd # Apache HTTPd
   #dockerfile: Nginx       # Nginx
   ports:
-    - 8000:80
-    - 8443:443
+    - 8007:80
+    - 8447:443
   links:
     - main
   volumes_from:
@@ -54,7 +52,7 @@ web:
 mysql:
   build: docker/mysql/  # MySQL, MariaDB or PerconaDB
   ports:
-    - 13306:3306
+    - 13366:3306
   volumes_from:
     - storage
   volumes:
@@ -63,30 +61,18 @@ mysql:
     - docker-env.yml
 
 #######################################
-# PostgreSQL server
-#######################################
-#postgres:
-#  build: docker/postgres/
-#  ports:
-#    - 15432:5432
-#  volumes_from:
-#    - storage
-#  env_file:
-#    - docker-env.yml
-
-#######################################
 # Solr server
 #######################################
-#solr:
-#  build: docker/solr/
-#  ports:
-#    - 18983:8983
-#  volumes_from:
-#    - storage
-#  environment:
-#    - SOLR_STORAGE=/data/solr/server-master/
-#  env_file:
-#    - docker-env.yml
+solr:
+  build: docker/solr/
+  ports:
+    - 18987:8983
+  volumes_from:
+    - storage
+  environment:
+    - SOLR_STORAGE=/data/solr/server-master/
+  env_file:
+    - docker-env.yml
 
 #######################################
 # Elasticsearch
@@ -124,25 +110,12 @@ mysql:
 #######################################
 # Mailcatcher
 #######################################
-#mail:
-#  build: docker/mail/
-#  ports:
-#    - 1080:1080
-#  env_file:
-#    - docker-env.yml
-
-#######################################
-# FTP (vsftpd)
-#######################################
-#ftp:
-#  build: docker/vsftpd/
-#  volumes_from:
-#    - storage
-#  volumes:
-#    - ./:/docker/
-#    - /tmp/debug/:/tmp/debug/
-#  env_file:
-#    - docker-env.yml
+mail:
+  build: docker/mail/
+  ports:
+    - 1087:1080
+  env_file:
+    - docker-env.yml
 
 #######################################
 # Storage
