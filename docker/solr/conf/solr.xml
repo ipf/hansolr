@@ -3,6 +3,7 @@
     <cores adminPath="/admin/cores" shareSchema="true">
         <core name="core_de" instanceDir="typo3cores" schema="german/schema.xml" dataDir="data/core_de" />
         <core name="core_en" instanceDir="typo3cores" schema="english/schema.xml" dataDir="data/core_en" />
+        <core name="hansolr" instanceDir="typo3cores" schema="hansolr/schema.xml" dataDir="data/hansolr" />
 
 <!--
         <core name="core_ar" instanceDir="typo3cores" schema="arabic/schema.xml" dataDir="data/core_ar" />

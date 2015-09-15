@@ -12,7 +12,7 @@
 -->
 <config name="tx_solr-3-0-0--20140516">
 
-	<luceneMatchVersion>LUCENE_48</luceneMatchVersion>
+	<luceneMatchVersion>LUCENE_49</luceneMatchVersion>
 
 
 	<abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
@@ -181,17 +181,17 @@
 			<str name="pf">content^2.0</str>
 			<str name="df">content</str>
 			<int name="ps">15</int>
-	
+
 			<str name="mm">2&lt;-35%</str>
-	
+
 			<str name="hl.fl">title,content</str>
 			<int name="hl.snippets">3</int>
 			<str name="hl.mergeContiguous">true</str>
 			<str name="hl.requireFieldMatch">true</str>
-	
+
 			<str name="f.content.hl.alternateField">content</str>
 			<str name="f.content.hl.maxAlternateFieldLength">200</str>
-	
+
 			<str name="spellcheck">false</str>
 			<str name="spellcheck.onlyMorePopular">false</str>
 			<str name="spellcheck.extendedResults">false</str>
@@ -218,7 +218,7 @@
 		</lst>
 	</requestHandler>
 
-	
+
 	<requestHandler name="/browse" class="solr.SearchHandler">
 		<lst name="defaults">
 			<str name="echoParams">explicit</str>
